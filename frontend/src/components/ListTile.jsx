@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 export default function ListTile({listItemData}) {
-    let {id: itemId, tasks, name} = listItemData;
+    let {_id: itemId, tasks, name} = listItemData;
     let item_link = 'list/' + itemId;
 
     return (
