@@ -5,8 +5,8 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import SendIcon from '@material-ui/icons/Send';
-import data from './../data';
 import axios from 'axios';
+
 
 
 // axios.get('https://api.github.com/users')
@@ -37,7 +37,7 @@ import axios from 'axios';
 //   .then(function () {
 //     // always executed
 //   });
-const url="http://localhost:5000/lists";
+const url=process.env.REACT_APP_TODOKEEPER_API_URL+'/lists';
 
 export default function ListsListing() {
     const [lists, setLists] = useState([]);
@@ -45,9 +45,8 @@ export default function ListsListing() {
     // Want to use async/await? Add the `async` keyword to your outer function/method.
     async function getLists() {
         try {
-            const response = await axios.get(url,);
-            // setLists(['lorem','ipsmu']);
-            return response;
+            console.log(url);
+            return await axios.get(url);
         } catch (error) {
             console.error(error);
         }
@@ -58,7 +57,7 @@ export default function ListsListing() {
             setLists(r.data);
         });
     },[]);
-    let fake_data = [];
+
 
     return (
         <>
