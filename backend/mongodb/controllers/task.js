@@ -1,4 +1,5 @@
 const Task = require('../models/task').Task;
+const List = require('../models/list').List;
 
 let getTasks = function (req, res) {
     Task.find()
@@ -7,12 +8,27 @@ let getTasks = function (req, res) {
 }
 let addTask = (req, res) => {
     let name = req.body.name;
-    if (name) {
+    let listId = req.body.listId;
+    if (name && listId) {
         let tasks = [];
         let task = new Task({name, tasks});
         task.save((error, addedTask) => {
             if (!error) {
-                res.status(200).json({"message": "task added successfully"});
+                if (listId.match(/^[0-9a-fA-F]{24}$/)) {
+                    console.log("// Yes, it's a valid ObjectId, proceed with `findById` call.");
+                }
+                List.findById(listId)
+                    .then(list => {
+                        console.log(list);
+                        list.tasks = [...list.tasks, addedTask];
+                        list.save().catch(err => console.log(err));
+                        res.status(200).json({"message": "task added successfully", newTask: addedTask});
+                    })
+                    .catch(err => {
+                        res.status(500).json({"message": "an error occured"});
+                        console.log(err)
+                    });
+
             } else {
                 console.log(error);
                 res.status(400).json({error: error, message: "An error occurred while adding the new task"});
@@ -40,7 +56,7 @@ let updateTask = (req, res) => {
     let name = req.body.name;
     let {taskId} = (req.params);
     if (name) {
-        Task.findByIdAndUpdate(taskId, {name},{ upsert: true }, (error) => {
+        Task.findByIdAndUpdate(taskId, {name}, {upsert: true}, (error) => {
             if (!error) {
                 res.status(200).json({"message": "task updated successfully"});
             } else {
@@ -54,4 +70,4 @@ let updateTask = (req, res) => {
 }
 
 //note: it seems i must add the 'module.' , otherwise it returns an error
-module.exports ={getTasks,addTask,updateTask,getTask,removeTask}
+module.exports = {getTasks, addTask, updateTask, getTask, removeTask}
