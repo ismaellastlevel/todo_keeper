@@ -1,17 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Paper from "@material-ui/core/Paper";
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import MenuDropper from './utils/MenuDropper';
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
 import IconButton from '@material-ui/core/IconButton';
 import Input from "@material-ui/core/Input";
 import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios';
-
 import TaskTile from './TaskTile';
 
 const qs = require('querystring');
@@ -30,7 +29,8 @@ export default function ListCard({data}) {
         e.preventDefault();
         const requestBody = {
             name: taskInputValue,
-            listId: id
+            listId: id,
+            isDone:false
         }
         const config = {
             headers: {
@@ -44,7 +44,6 @@ export default function ListCard({data}) {
                 setTasks((previous) => {
                     return [...previous, r.data.newTask];
                 })
-                //fetchData();
             }).catch((e) => {
             console.log(e);
         });
@@ -63,38 +62,30 @@ export default function ListCard({data}) {
             style={{minHeight: '100vh'}}
         >
             <Grid item xs={12} md={6} lg={3}>
-                <Card>
-                    <CardHeader title={name} action={<MenuDropper/>}/>
-                    <CardContent>
-                        {(tasks.length <= 0) ? ('no task') : (tasks.map((item) => (
-                            <TaskTile key={item._id} taskItemData={item}/>)))}
-                        <br/>
-                        <form action="/" style={{display: 'flex', flexDirection: 'row'}} onSubmit={handleFormSubmit}>
-                            <FormControl fullWidth variant="outlined">
-                                <InputLabel htmlFor="outlined-adornment-amount">add new task</InputLabel>
-                                <Input
-                                    id="outlined-adornment-amount"
-                                    onChange={handleChange}
-                                    value={taskInputValue}
-                                />
-                            </FormControl>
-                            <IconButton type={"submit"}><SendIcon/></IconButton>
-                        </form>
-                        {/*<form action="/" style={{display: 'flex', flexDirection: 'row'}} onSubmit={handleFormSubmit}>*/}
-                        {/*    <FormControl fullWidth variant="outlined">*/}
-                        {/*        <InputLabel htmlFor="outlined-adornment-amount">Add new list</InputLabel>*/}
-                        {/*        <OutlinedInput*/}
-                        {/*            id="outlined-adornment-amount"*/}
-                        {/*            labelWidth={82}*/}
-                        {/*            onChange={handleChange}*/}
-                        {/*            value={taskInputValue}*/}
-                        {/*        />*/}
-                        {/*    </FormControl>*/}
-                        {/*    <IconButton type={"submit"}><SendIcon/></IconButton>*/}
-                        {/*</form>*/}
-                    </CardContent>
+                <Paper elevation={5}>
+                    <Card>
+                        <CardHeader title={name} action={<MenuDropper/>}/>
+                        <CardContent>
+                            {(tasks.length <= 0) ? ('no task') : (tasks.map((item) => (
+                                <TaskTile key={item._id} taskItemData={item}/>)))}
+                            <br/>
+                            <form action="/" style={{display: 'flex', flexDirection: 'row'}}
+                                  onSubmit={handleFormSubmit}>
+                                <FormControl fullWidth variant="outlined">
+                                    <InputLabel htmlFor="outlined-adornment-amount">add new task</InputLabel>
+                                    <Input
+                                        id="outlined-adornment-amount"
+                                        onChange={handleChange}
+                                        value={taskInputValue}
+                                    />
+                                </FormControl>
 
-                </Card>
+                                <IconButton style={{backgroundColor:"#3F51B5"}} type={"submit"}><SendIcon style={{color: "white"}}/></IconButton>
+                            </form>
+                        </CardContent>
+
+                    </Card>
+                </Paper>
             </Grid>
         </Grid>
     );

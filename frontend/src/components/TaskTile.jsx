@@ -3,9 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function TaskTile({taskItemData}) {
-    let {_id: taskId, name} = taskItemData;
+    let {_id: taskId, name,isDone} = taskItemData;
 
-    const [checked, setChecked] = useState(true);
+    const [checked, setChecked] = useState(isDone);
 
     const handleChange = (event) => {
         setChecked(event.target.checked);

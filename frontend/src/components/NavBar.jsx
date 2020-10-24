@@ -1,7 +1,7 @@
 import React from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function NavBar() {
 

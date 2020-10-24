@@ -8,10 +8,11 @@ let getTasks = function (req, res) {
 }
 let addTask = (req, res) => {
     let name = req.body.name;
+    let isDone = req.body.isDone;
     let listId = req.body.listId;
     if (name && listId) {
         let tasks = [];
-        let task = new Task({name, tasks});
+        let task = new Task({name, tasks,isDone});
         task.save((error, addedTask) => {
             if (!error) {
                 if (listId.match(/^[0-9a-fA-F]{24}$/)) {

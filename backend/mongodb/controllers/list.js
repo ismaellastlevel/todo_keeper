@@ -12,7 +12,7 @@ let addList = (req, res) => {
         let list = new List({name, tasks});
         list.save((error, addedList) => {
             if (!error) {
-                res.status(200).json({"message": "list added successfully"});
+                res.status(200).json({"message": "list added successfully",newList:addedList});
             } else {
                 console.log(error);
                 res.status(400).json({error: error, message: "An error occurred while adding the new list"});

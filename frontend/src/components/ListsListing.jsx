@@ -5,8 +5,6 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import SendIcon from '@material-ui/icons/Send';
-
-import {useFetchData} from '../hooks/useFetchData';
 import axios from 'axios';
 
 const qs = require('querystring');
@@ -79,7 +77,9 @@ export default function ListsListing() {
             </form>
 
             <Grid container spacing={1} style={{marginTop: 10}}>
-                {lists.map(item => <ListTile key={item._id} listItemData={item}/>)}
+                {(lists.length>0)?(lists.map((item)=>{
+                    return (<ListTile key={item._id} listItemData={item}/>);
+                })):'no list'}
             </Grid>
         </div>
     );

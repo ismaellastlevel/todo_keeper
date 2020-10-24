@@ -24,6 +24,6 @@ export default function ListShow() {
     }, []);
 
     return (
-        loading ? 'loading' : <ListCard data={listData}/>
+        loading ? 'loading...' : <ListCard data={listData}/>
     );
 }
