@@ -19,7 +19,7 @@ export default function ListShow() {
         fetchListData(listId).then(r => {
             setListData(r);
             setLoading(false);
-            console.log(r);
+            // console.log(r);
         });
     }, []);
 

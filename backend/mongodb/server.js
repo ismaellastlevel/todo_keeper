@@ -17,7 +17,7 @@ const TaskRouter = require('./routes/taskRouter').Router;
 
 
 
-mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: true }
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }
 ).then(() => console.log('DB Connected!'))
     .catch(err => {
         console.log(`DB Connection Error: ${err.message}`);

@@ -12,18 +12,15 @@ let addTask = (req, res) => {
     let listId = req.body.listId;
     if (name && listId) {
         let tasks = [];
-        let task = new Task({name, tasks,isDone});
+        let task = new Task({name, tasks, isDone});
         task.save((error, addedTask) => {
             if (!error) {
-                if (listId.match(/^[0-9a-fA-F]{24}$/)) {
-                    console.log("// Yes, it's a valid ObjectId, proceed with `findById` call.");
-                }
                 List.findById(listId)
                     .then(list => {
                         console.log(list);
                         list.tasks = [...list.tasks, addedTask];
                         list.save().catch(err => console.log(err));
-                        res.status(200).json({"message": "task added successfully", newTask: addedTask});
+                        res.status(200).json({"message": "task added successfully", newTask: addedTask, list});
                     })
                     .catch(err => {
                         res.status(500).json({"message": "an error occured"});
@@ -37,7 +34,7 @@ let addTask = (req, res) => {
         })
 
     } else {
-        res.status(400).json({"message": "the task name field is empty"});
+        res.status(400).json({"message": "the task name or the listId field is empty"});
     }
 }
 
@@ -53,18 +50,38 @@ let removeTask = (req, res) => {
         .then(task => res.json(task))
         .catch(err => res.status(400).json('Error: ' + err));
 }
+
 let updateTask = (req, res) => {
     let name = req.body.name;
+    let isDone = req.body.isDone;
     let {taskId} = (req.params);
+    let listId = req.body.listId;
     if (name) {
-        Task.findByIdAndUpdate(taskId, {name}, {upsert: true}, (error) => {
+        Task.findByIdAndUpdate(taskId, {                // <-- set stage
+            name: name, isDone: isDone
+        }, {upsert: true, new: true}, (error) => {
             if (!error) {
-                res.status(200).json({"message": "task updated successfully"});
+
             } else {
                 console.log(error);
                 res.status(400).json({error: error, message: "An error occurred while updating the task"});
             }
-        })
+        }).then((updatedTask) => {
+            List.findById(listId)
+                .then(list => {
+                    list.tasks = list.tasks.filter((item) => {
+                        return (String(item._id) !== String(updatedTask._id));
+                    });
+                    list.tasks.push(updatedTask);
+                    list.save().catch(err => console.log(err));
+                    res.status(200).json({"message": "task added successfully", newTask: updatedTask, list});
+                })
+                .catch(err => {
+                    res.status(500).json({"message": "an error occured"});
+                    console.log(err);
+                });
+        });
+
     } else {
         res.status(400).json({"message": "the task name field is empty"});
     }

@@ -67,7 +67,7 @@ export default function ListCard({data}) {
                         <CardHeader title={name} action={<MenuDropper/>}/>
                         <CardContent>
                             {(tasks.length <= 0) ? ('no task') : (tasks.map((item) => (
-                                <TaskTile key={item._id} taskItemData={item}/>)))}
+                                <TaskTile key={item._id} listId={id} taskItemData={item}/>)))}
                             <br/>
                             <form action="/" style={{display: 'flex', flexDirection: 'row'}}
                                   onSubmit={handleFormSubmit}>
