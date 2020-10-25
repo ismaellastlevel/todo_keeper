@@ -23,7 +23,7 @@ let addTask = (req, res) => {
                         res.status(200).json({"message": "task added successfully", newTask: addedTask, list});
                     })
                     .catch(err => {
-                        res.status(500).json({"message": "an error occured"});
+                        res.status(500).json({"message": "an error occurred"});
                         console.log(err)
                     });
 
@@ -57,9 +57,7 @@ let updateTask = (req, res) => {
     let {taskId} = (req.params);
     let listId = req.body.listId;
     if (name) {
-        Task.findByIdAndUpdate(taskId, {                // <-- set stage
-            name: name, isDone: isDone
-        }, {upsert: true, new: true}, (error) => {
+        Task.findByIdAndUpdate(taskId, {name: name, isDone: isDone}, {upsert: true, new: true}, (error) => {
             if (!error) {
 
             } else {
@@ -77,7 +75,7 @@ let updateTask = (req, res) => {
                     res.status(200).json({"message": "task added successfully", newTask: updatedTask, list});
                 })
                 .catch(err => {
-                    res.status(500).json({"message": "an error occured"});
+                    res.status(500).json({"message": "an error occurred"});
                     console.log(err);
                 });
         });

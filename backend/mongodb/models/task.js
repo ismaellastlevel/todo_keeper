@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-//todo: see how we can make task unique n a given list
+//todo: see how we can make task unique in a given list
 let TaskSchema=new mongoose.Schema({
     name:{
         type:String,

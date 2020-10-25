@@ -6,15 +6,12 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
-// app.use(express.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 
 const ListRouter = require('./routes/listRouter').Router;
 const TaskRouter = require('./routes/taskRouter').Router;
-
-
 
 
 mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false }

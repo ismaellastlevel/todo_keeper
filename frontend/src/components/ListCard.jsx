@@ -12,7 +12,7 @@ import Input from "@material-ui/core/Input";
 import SendIcon from '@material-ui/icons/Send';
 import axios from 'axios';
 import TaskTile from './TaskTile';
-
+import MenuItem from '@material-ui/core/MenuItem';
 const qs = require('querystring');
 
 
@@ -24,7 +24,9 @@ export default function ListCard({data}) {
     let [taskInputValue, setTaskInputValue] = useState('');
     let baseUrl = process.env.REACT_APP_TODOKEEPER_API_URL;
     const url = baseUrl + '/tasks';
+  const handleClose = () => {
 
+  };
     function handleFormSubmit(e) {
         e.preventDefault();
         const requestBody = {
@@ -64,7 +66,9 @@ export default function ListCard({data}) {
             <Grid item xs={12} md={6} lg={3}>
                 <Paper elevation={5}>
                     <Card>
-                        <CardHeader title={name} action={<MenuDropper/>}/>
+                        <CardHeader title={name} action={<MenuDropper><MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem></MenuDropper>}/>
                         <CardContent>
                             {(tasks.length <= 0) ? ('no task') : (tasks.map((item) => (
                                 <TaskTile key={item._id} listId={id} taskItemData={item}/>)))}

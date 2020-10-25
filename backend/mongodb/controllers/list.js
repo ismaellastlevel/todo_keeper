@@ -18,7 +18,6 @@ let addList = (req, res) => {
                 res.status(400).json({error: error, message: "An error occurred while adding the new list"});
             }
         })
-
     } else {
         res.status(400).json({"message": "the list name field is empty"});
     }
