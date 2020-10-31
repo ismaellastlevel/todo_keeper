@@ -39,9 +39,9 @@ let updateList = (req, res) => {
     let name = req.body.name;
     let {listId} = req.params;
     if (name) {
-        List.findByIdAndUpdate(listId, {name},{ upsert: true }, (error, result) => {
+        List.findByIdAndUpdate(listId, {name},{ upsert: true, new: true }, (error, result) => {
             if (!error) {
-                res.status(200).json({"message": "list updated successfully"});
+                res.status(200).json({"message": "list updated successfully",list:result});
             } else {
                 console.log(error);
                 res.status(400).json({error: error, message: "An error occurred while updating the list"});

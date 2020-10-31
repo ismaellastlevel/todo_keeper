@@ -15,6 +15,6 @@ export const useFetchData =function (url) {
         getLists().then(r => {
             setLists(r.data);
         });
-    },[]);
+    },[getLists]);
     return lists;
 }

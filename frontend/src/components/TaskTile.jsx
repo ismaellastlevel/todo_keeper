@@ -23,7 +23,7 @@ export default function TaskTile({taskItemData,listId}) {
     useEffect(() => {
         console.log('updateTaskData');
         updateTaskData();
-    }, [taskData]);
+    }, [updateTaskData]);
 
     function updateTaskData() {
         let baseUrl = process.env.REACT_APP_TODOKEEPER_API_URL;

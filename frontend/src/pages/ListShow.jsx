@@ -21,7 +21,7 @@ export default function ListShow() {
             setLoading(false);
             // console.log(r);
         });
-    }, []);
+    }, [listId]);
 
     return (
         loading ? 'loading...' : <ListCard data={listData}/>

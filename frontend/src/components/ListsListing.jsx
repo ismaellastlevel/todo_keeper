@@ -31,7 +31,7 @@ export default function ListsListing() {
 
     useEffect(()=>{
         fetchData();
-    },[]);
+    },[fetchData]);
 
 
     function handleFormSubmit(e) {
