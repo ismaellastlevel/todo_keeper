@@ -7,9 +7,10 @@ let getLists = function (req, res) {
 }
 let addList = (req, res) => {
     let name = req.body.name;
+    let color = req.body.color;
     if (name) {
         let tasks = [];
-        let list = new List({name, tasks});
+        let list = new List({name, tasks,color});
         list.save((error, addedList) => {
             if (!error) {
                 res.status(200).json({"message": "list added successfully",newList:addedList});
@@ -37,9 +38,10 @@ let removeList = (req, res) => {
 }
 let updateList = (req, res) => {
     let name = req.body.name;
+    let color = req.body.color;
     let {listId} = req.params;
     if (name) {
-        List.findByIdAndUpdate(listId, {name},{ upsert: true, new: true }, (error, result) => {
+        List.findByIdAndUpdate(listId, {name,color},{ upsert: true, new: true }, (error, result) => {
             if (!error) {
                 res.status(200).json({"message": "list updated successfully",list:result});
             } else {

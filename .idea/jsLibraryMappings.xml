@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$/backend/mongodb" libraries="{@types/express, @types/mongoose, HTTP Response Handler}" />
-    <file url="file://$PROJECT_DIR$/frontend" libraries="{@types/material-ui, @types/react, HTML}" />
-    <file url="PROJECT" libraries="{HTML}" />
+    <file url="file://$PROJECT_DIR$/backend/mongodb" libraries="{@types/express, HTTP Response Handler}" />
+    <file url="file://$PROJECT_DIR$/frontend" libraries="{@types/react, HTML}" />
+    <file url="PROJECT" libraries="{@types/express, @types/react, HTML}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

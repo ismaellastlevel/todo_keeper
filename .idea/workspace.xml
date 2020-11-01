@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="352737eb-72f9-4169-8faf-59b8f5d5fd5b" name="Default Changelist" comment="" />
+    <list default="true" id="352737eb-72f9-4169-8faf-59b8f5d5fd5b" name="Default Changelist" comment="list deletion added">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/ismaellastlevel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/todo_keeper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/todo_keeper.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mongodb/controllers/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mongodb/controllers/list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mongodb/controllers/task.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mongodb/controllers/task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/mongodb/models/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mongodb/models/list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ListCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ListCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ListTile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ListTile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ListsListing.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/ListsListing.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TaskTile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TaskTile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/to_be_deleted.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/to_be_deleted.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,6 +35,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Ismael Lastlevel &lt;ismael.lastlevel@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JsFlowSettings">
@@ -27,11 +56,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.15.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/mongodb" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -45,21 +76,47 @@
       <updated>1603355106471</updated>
       <workItem from="1603355219168" duration="321000" />
       <workItem from="1604164271969" duration="43000" />
+      <workItem from="1604182868918" duration="265000" />
+      <workItem from="1604183749686" duration="228000" />
+      <workItem from="1604217972447" duration="941000" />
+      <workItem from="1604220065356" duration="15551000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
-    <state x="482" y="179" key="#Usage_Scope" timestamp="1603355591334">
+    <state x="482" y="179" key="#Usage_Scope" timestamp="1604182904520">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="482" y="179" key="#Usage_Scope/0.0.1366.728@0.0.1366.728" timestamp="1603355591334" />
+    <state x="482" y="179" key="#Usage_Scope/0.0.1366.728@0.0.1366.728" timestamp="1604182904520" />
+    <state x="413" y="144" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper" timestamp="1604183091215">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="144" key="#com.intellij.ide.scriptingContext.ui.PerFileMappingsDialogWrapper/0.0.1366.728@0.0.1366.728" timestamp="1604183091215" />
+    <state x="314" y="0" key="CommitChangelistDialog2" timestamp="1604231114215">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="314" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1604231114215" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1604164323649">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604164323649" />
-    <state x="184" y="9" key="SettingsEditor" timestamp="1603355593775">
+    <state x="184" y="9" key="SettingsEditor" timestamp="1604183092455">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1603355593775" />
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1604183092455" />
   </component>
 </project>

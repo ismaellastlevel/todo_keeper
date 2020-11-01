@@ -14,9 +14,14 @@ import axios from 'axios';
 import TaskTile from './TaskTile';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import SimpleModal from './to_be_deleted';
 import Modal from '@material-ui/core/Modal';
 import {makeStyles} from "@material-ui/core/styles";
+
+import FadeMenu from './to_be_deleted';
+
+import {useHistory} from 'react-router-dom';
+import ColorPicker from "material-ui-color-picker";
+
 
 const qs = require('querystring');
 
@@ -24,8 +29,9 @@ const qs = require('querystring');
 export default function ListCard({data}) {
     let {_id: id} = data;
 
-    let [name, setName] = useState(data.name);
-    let [listName, setListName] = useState(name);
+    let [listData,setListData]=useState(data);
+
+    let [listName, setListName] = useState(listData.name);
 
     let [tasks, setTasks] = useState(data.tasks);
 
@@ -33,10 +39,18 @@ export default function ListCard({data}) {
     let baseUrl = process.env.REACT_APP_TODOKEEPER_API_URL;
     const url = baseUrl + '/tasks';
 
+
+    let history = useHistory();
+
+    const redirect = () => {
+        history.push('/')
+    }
+
+
     function handleFormSubmit(e) {
         e.preventDefault();
         const requestBody = {
-            name: listName,
+            name: taskInputValue,
             listId: id,
             isDone: false
         }
@@ -50,7 +64,7 @@ export default function ListCard({data}) {
                 console.log(r);
                 setTaskInputValue('');
                 setTasks((previous) => {
-                    return [...previous, r.data.newTask];
+                    return [...previous, r.data.task];
                 })
             }).catch((e) => {
             console.log(e);
@@ -60,17 +74,10 @@ export default function ListCard({data}) {
 
 
 
-    function removeList(e) {
-        //todo: trigger modal
-    }
-
+    //modal script
     function handleChange(e) {
         setTaskInputValue(e.target.value);
     }
-
-
-
-    //modal script
     const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
 
@@ -83,7 +90,7 @@ export default function ListCard({data}) {
     };
 
     function getModalStyle() {
-        const top = 50 ;
+        const top = 50;
         const left = 50;
         return {
             top: `${top}%`,
@@ -105,10 +112,11 @@ export default function ListCard({data}) {
     const classes = useStyles();
 
     function handleRenameListFormSubmit(e) {
-        let updateListUrl=baseUrl+'/lists/'+id;
+        let updateListUrl = baseUrl + '/lists/' + id;
         e.preventDefault();
         const requestBody = {
-            name: listName
+            name: listName,
+            color:listData.color
         }
         const config = {
             headers: {
@@ -118,23 +126,36 @@ export default function ListCard({data}) {
         axios.post(updateListUrl, qs.stringify(requestBody), config)
             .then((r) => {
                 console.log(r);
-                setListName(r.data.list.name);
-                setName(r.data.list.name);
+
+                setListData((prev => {
+                    return {...prev,name:r.data.list.name}
+                }));
+                // setName(r.data.list.name);
                 handleClose();
             }).catch((e) => {
             console.log(e);
         });
     }
+
     function handleRenameListChange(e) {
         setListName(e.target.value);
     }
 
     const renameListModalBody = (
         <div style={modalStyle} className={classes.paper}>
-            <h2 id="simple-modal-title">Rename list</h2>
-            <form action="/" style={{display: 'flex', flexDirection: 'row'}}
+            <h2 id="simple-modal-title">edit list</h2>
+            <form action="/"
                   onSubmit={handleRenameListFormSubmit}>
-                <FormControl fullWidth variant="outlined">
+                <ColorPicker
+                        name='new_list_color'
+                        defaultValue='list color'
+                        value={listData.color||'#3F51B5'}
+                        onChange={color => setListData(prev => {
+                    return {...prev,color};
+                })}
+                    />
+                    <div style={{display: 'flex', flexDirection: 'row',marginTop:"5px"}}>
+                        <FormControl fullWidth variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-amount">rename this list</InputLabel>
                     <Input
                         id="outlined-adornment-amount"
@@ -145,11 +166,23 @@ export default function ListCard({data}) {
 
                 <IconButton style={{backgroundColor: "#3F51B5"}} type={"submit"}><SendIcon
                     style={{color: "white"}}/></IconButton>
+                    </div>
+
             </form>
         </div>
     );
 
     //modal script
+    function handleListDelete() {
+        let baseUrl = process.env.REACT_APP_TODOKEEPER_API_URL;
+        const url = baseUrl + '/lists/' + id;
+        let response = axios.delete(url).then((r) => {
+            redirect();
+        }).catch(e => {
+            console.log(e);
+        });
+        return response.data;
+    }
 
     return (
         <Grid
@@ -160,12 +193,16 @@ export default function ListCard({data}) {
             style={{minHeight: '100vh'}}
         >
             <Grid item xs={12} md={6} lg={3}>
-                <Paper elevation={5}>
+                <Paper elevation={5} style={{borderTop:"0.5rem solid "+(listData.color||"rgb(55, 83, 221)")}}>
                     <Card>
-                        <CardHeader title={name} action={
+                        <CardHeader title={listData.name} action={
                             <MenuDropper>
-                                <MenuItem onClick={handleModalOpen}>rename</MenuItem>
-                                <MenuItem onClick={handleClose}>delete</MenuItem>
+                                <MenuItem onClick={handleModalOpen}>edit</MenuItem>
+                                <MenuItem onClick={() => {
+                                    if (window.confirm('are you sure about that?')) {
+                                        handleListDelete()
+                                    }
+                                }}>delete</MenuItem>
                             </MenuDropper>}/>
                         <CardContent>
 
@@ -176,7 +213,7 @@ export default function ListCard({data}) {
                                     onClose={handleClose}
                                     aria-labelledby="simple-modal-title"
                                     aria-describedby="simple-modal-description"
-                                 >
+                                >
                                     {renameListModalBody}
                                 </Modal>
                             </div>

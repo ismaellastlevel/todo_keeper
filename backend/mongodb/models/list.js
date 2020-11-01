@@ -10,6 +10,12 @@ let ListSchema=new Schema({
         required:true,
         unique:true
     },
+    color:{
+        type:String,
+        required:false,
+        unique:false,
+        default:"#3F51B5"
+    },
     tasks:[{
         type:[Schema.Types.Mixed]
     }]

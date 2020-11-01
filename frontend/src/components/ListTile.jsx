@@ -16,18 +16,18 @@ export default function ListTile({listItemData}) {
     return (
         <Grid item xs={12} md={4} lg={3}>
             <Link to={item_link} style={{textDecoration: 'none'}}>
-                <Paper elevation={2}>
+                <Paper elevation={2} style={{borderLeft:"0.3rem solid "+(listItemData.color||"rgb(55, 83, 221)")}}>
                 <Card>
                     <CardHeader avatar={
                         <Avatar aria-label="recipe">
                             <AssignmentIcon/>
                         </Avatar>
                     }
-                                action={
-                                    <IconButton aria-label="settings">
-                                        <MoreVertIcon/>
-                                    </IconButton>
-                                }
+                                // action={
+                                //     <IconButton aria-label="settings">
+                                //         <MoreVertIcon/>
+                                //     </IconButton>
+                                // }
                                 title={(name.length > 25) ? (name.substr(0, 25) + '...') : (name)}
                                 subheader={(tasks.length > 1) ? (tasks.length + ' tasks') : tasks.length + ' task'}
                     /></Card>
